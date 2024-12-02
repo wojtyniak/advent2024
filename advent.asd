@@ -10,7 +10,7 @@
   :license ""
   :depends-on ("alexandria" "serapeum" "arrow-macros" "split-sequence")
   :components ((:module "src"
-                :components #.(generate-components 1)))
+                :components #.(generate-components 2)))
   ;; ((:file "main"))))
   :description ""
   :in-order-to ((test-op (test-op "advent/tests"))))
@@ -21,7 +21,7 @@
   :depends-on ("advent"
                "fiveam")
   :components ((:module "tests"
-                :components #.(generate-components 1)))
+                :components #.(generate-components 2)))
   :description "Test system for advent"
   :perform (test-op (op c) (symbol-call :fiveam :run!
                                         (find-symbol* :advent :advent/tests))))
