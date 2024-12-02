@@ -27,3 +27,17 @@
 
 (defun day02-part1 (records)
   (count-if-not #'null (mapcar #'record-validp records)))
+
+;;; Part 2
+
+(defun list-variants (l)
+  (loop for i from 0 below (length l)
+        collect (append (subseq l 0 i)
+                        (subseq l (1+ i)))))
+
+(defun record-validp-2 (record)
+  (or (record-validp record)
+      (some #'record-validp (list-variants record))))
+
+(defun day02-part2 (records)
+  (count-if-not #'null (mapcar #'record-validp-2 records)))

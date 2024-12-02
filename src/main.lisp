@@ -3,7 +3,6 @@
   (:export #:load-input #:load-input-lines))
 (in-package :advent)
 
-
 (defun input-path (day)
   (asdf:system-relative-pathname "advent" (format nil "src/inputs/day~2,'0d.txt" day)))
 

@@ -2,10 +2,12 @@
   (:use :cl :fiveam :advent/tests)
   (:shadowing-import-from :advent.day02
                           #:day02-part1
+                          #:day02-part2
                           #:parse-input
                           #:pair-valid
                           #:all-pairs
                           #:record-validp))
+
 (in-package :advent/tests.day02)
 
 (def-suite* day02 :in advent)
@@ -25,5 +27,8 @@
        (parse-input '("1 2 3" "4 5 6"))
        '((1 2 3) (4 5 6)))))
 
-(test day02-ex1
-  (is (= (day02-part1 day02-ex1) 2)))
+(test day02-part1
+  (is (= (day02-part1 day02-ex1-parsed) 2)))
+
+(test day02-part2
+  (is (= (day02-part2 day02-ex1-parsed) 4)))
