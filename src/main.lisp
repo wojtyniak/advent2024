@@ -1,6 +1,6 @@
 (defpackage advent
   (:use :cl :alexandria :serapeum :split-sequence)
-  (:export #:load-input #:load-input-lines))
+  (:export #:load-input #:load-input-lines #:split-lines))
 (in-package :advent)
 
 (defun input-path (day)
@@ -11,3 +11,6 @@
 
 (defun load-input-lines (day)
   (mapcar #'trim-whitespace (uiop:read-file-lines (input-path day))))
+
+(defun split-lines (s)
+  (ppcre:split "\n" s))
