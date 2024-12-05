@@ -57,3 +57,29 @@
                           summing (get-words-count grid (gen-coords row col max-row max-col))))))
 
 ;; (day04-part1 (load-input-lines 4))
+
+;;;;;; Part 2
+
+(defun check-square (arr row col)
+  (and
+   (eq (aref arr (1+ row) (1+ col)) #\A)
+   (or (and (eq (aref arr row col) #\M)
+            (eq (aref arr (+ 2 row) (+ 2 col)) #\S))
+       (and (eq (aref arr row col) #\S)
+            (eq (aref arr (+ 2 row) (+ 2 col)) #\M)))
+   (or (and (eq (aref arr row (+ 2 col)) #\M)
+            (eq (aref arr (+ 2 row) col) #\S))
+       (and (eq (aref arr row (+ 2 col)) #\S)
+            (eq (aref arr (+ 2 row) col) #\M)))))
+
+(defun day04-part2 (lines)
+  (let* ((grid (parse-grid lines))
+         (max-row (1- (first (array-dimensions grid))))
+         (max-col (1- (second (array-dimensions grid)))))
+    (loop for row from 0 to (- max-row 2)
+          summing (loop for col from 0 to (- max-row 2)
+                        counting (check-square grid row col)))))
+
+
+(day04-part2 (load-input-lines 4))
+                                        ; => 1965 (11 bits, #x7AD)

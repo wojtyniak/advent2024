@@ -1,14 +1,16 @@
 (defpackage :advent/tests.day04
   (:use :cl :fiveam :advent/tests)
-  (:shadowing-import-from :advent.day04
+  (:shadowing-import-from
+   :advent.day04
    #:gen-coords
    #:parse-grid
    #:get-word
-   #:get-words
+   #:get-words-count
    #:day04-part1
-                          :split-sequence
-                          #:split-sequence))
-;; #:day04-part2))
+   #:day04-part2
+
+   :split-sequence
+   #:split-sequence))
 
 (in-package :advent/tests.day04)
 
