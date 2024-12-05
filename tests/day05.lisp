@@ -9,8 +9,8 @@
    #:parse-input
    #:page-valid-p
    #:valid-page-order-p
-   #:day05-part1))
-;; #:day05-part2
+   #:day05-part1
+   #:day05-part2))
 
 (in-package :advent/tests.day05)
 
@@ -71,3 +71,18 @@
   (destructuring-bind (rules printouts) (parse-input ex1)
     (is (page-valid-p rules '(75) 57))
     (is (not (page-valid-p rules '(29 18 33 13) 53)))))
+
+(test printout-valid
+  (destructuring-bind (rules printouts) (parse-input ex1)
+    (is (valid-page-order-p rules (car printouts)))
+    (is (valid-page-order-p rules (second printouts)))
+    (is (valid-page-order-p rules (third printouts)))
+    (is (not (valid-page-order-p rules (fourth printouts))))
+    (is (not (valid-page-order-p rules (fifth printouts))))
+    (is (not (valid-page-order-p rules (sixth printouts))))))
+
+(test part1
+  (is (= (day05-part1 ex1) 143)))
+
+(test part2
+  (is (= (day05-part2 ex1) 123)))

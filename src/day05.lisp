@@ -49,6 +49,22 @@
   (destructuring-bind (rules printouts) (parse-input input)
     (loop for printout in printouts
           when (valid-page-order-p rules printout)
-            summing (middle printout))))
+            summing (nth (floor (/ (length printout) 2)) printout))))
 
 ;; (day05-part1 (load-input 5))
+
+
+;;;;;;;; Part 2
+
+(defun middle (l)
+  (nth (floor (/ (length l) 2)) l))
+
+(defun make-ordered-p (hash)
+  (lambda (a b)
+    (not (member b (gethash a hash)))))
+
+(defun day05-part2 (input)
+  (destructuring-bind (rules printouts) (parse-input input)
+    (loop for printout in printouts
+          when (not (valid-page-order-p rules printout))
+            summing (middle (sort printout (make-ordered-p rules))))))
